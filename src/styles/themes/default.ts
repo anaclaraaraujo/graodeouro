@@ -20,6 +20,7 @@ export const defaultTheme = {
     'purple-500': '#8047F8',
     'purple-700': '#4B2995',
   },
+  
   font: {
     roboto: "'Roboto', sans-serif",
     baloo: "'Baloo 2', sans-serif"

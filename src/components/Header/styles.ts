@@ -50,7 +50,7 @@ export const HeaderButton = styled.button<{ $variant: 'purple' | 'yellow' }>`
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.6rem;
+    font-size: 1.2rem;
     font-weight: 700;
   }
 

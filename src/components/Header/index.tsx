@@ -19,6 +19,7 @@ export function Header() {
         <NavLink to="/checkout" title="Checkout">
           <HeaderButton $variant="yellow">
             <ShoppingCart size={20} weight="fill" />
+            <span>1</span>
           </HeaderButton>
         </NavLink>
       </HeaderNav>
