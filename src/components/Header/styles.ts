@@ -3,7 +3,7 @@ import styled, { css, } from 'styled-components';
 export const HeaderContainer = styled.header`
   width: 100%;
   height: 10.4rem;
-  background: ${(props) => props.theme['gray-100']};
+  background: ${(props) => props.theme.colors['gray-100']};
 
   display: flex;
   align-items: center;
@@ -24,9 +24,7 @@ export const HeaderNav = styled.div`
   gap: 1.6rem;
 `;
 
-export const HeaderButton = styled.button.withConfig({
-  shouldForwardProp: (prop) => prop !== 'variant',
-}) <{ variant: 'purple' | 'yellow' }>`
+export const HeaderButton = styled.button<{ $variant: 'purple' | 'yellow' }>`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -46,7 +44,7 @@ export const HeaderButton = styled.button.withConfig({
     border-radius: 50%;
     top: calc(-2rem / 2);
     right: calc(-2rem / 2);
-    color: ${(props) => props.theme.white};
+    color: ${(props) => props.theme.colors.white};
 
     display: flex;
     align-items: center;
@@ -55,17 +53,17 @@ export const HeaderButton = styled.button.withConfig({
     font-weight: 700;
   }
 
-  ${({ variant }) => css`
-    background: ${(props) => props.theme[`${variant}-300`]};
-    color: ${(props) => props.theme[`${variant}-700`]};
+  ${({ $variant }) => css`
+    background: ${(props) => props.theme.colors[`${$variant}-300`]};
+    color: ${(props) => props.theme.colors[`${$variant}-700`]};
 
-    span { background: ${(props) => props.theme[`${variant}-700`]}; }
+    span { background: ${(props) => props.theme.colors[`${$variant}-700`]}; }
   `}
 
-  ${({ variant }) =>
-    variant === 'purple' &&
+  ${({ $variant }) =>
+    $variant === 'purple' &&
     css`   
-       svg { color: ${(props) => props.theme['purple-700']}; }
+       svg { color: ${(props) => props.theme.colors['purple-700']}; }
     `
   }
 `;

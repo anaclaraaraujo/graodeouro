@@ -11,14 +11,13 @@ export function Header() {
       </NavLink>
 
       <HeaderNav>
-        <HeaderButton variant="purple">
+        <HeaderButton $variant="purple">
           <MapPin size={20} weight="fill" />
           Catalão, GO
         </HeaderButton>
 
         <NavLink to="/checkout" title="Checkout">
-          <HeaderButton variant="yellow">
-            1
+          <HeaderButton $variant="yellow">
             <ShoppingCart size={20} weight="fill" />
           </HeaderButton>
         </NavLink>
