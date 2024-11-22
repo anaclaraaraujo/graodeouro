@@ -2,6 +2,7 @@ import { ShoppingCartSimple } from '@phosphor-icons/react';
 import { useTheme } from 'styled-components';
 import { QuantityInput } from '../Form';
 import { Container, CoffeeImg, Control, Description, Order, Price, Tags, Title } from './styles';
+import { useState } from 'react';
 
 type Props = {
   coffee: {
@@ -15,7 +16,18 @@ type Props = {
 }
 
 export function Card({ coffee }: Props) {
-  const theme = useTheme()
+  const [quantity, setQuantity] = useState(1);
+  const theme = useTheme();
+
+  function incrementQuantity() {
+    setQuantity((state) => state + 1)
+  }
+
+  function decrementQuantity() {
+    if (quantity > 1) {
+      setQuantity((state) => state - 1)
+    }
+  }
 
   return (
     <Container>
@@ -37,7 +49,11 @@ export function Card({ coffee }: Props) {
         </Price>
 
         <Order>
-          <QuantityInput />
+          <QuantityInput
+            quantity={quantity}
+            incrementQuantity={incrementQuantity}
+            decrementQuantity={decrementQuantity}
+          />
           <button>
             <ShoppingCartSimple weight="fill" size={22} color={theme.colors['gray-300']} />
           </button>
