@@ -136,6 +136,6 @@ export const FilterItem = styled.button`
 
 export const CoffeeList = styled.div`
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(25.6rem, 1fr));
   gap: 3.2rem;
 `;
