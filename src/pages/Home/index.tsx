@@ -2,7 +2,7 @@ import imgHero from '/images/hero.png';
 import { Coffee, Package, ShoppingCart, Timer } from '@phosphor-icons/react';
 import { Container, Hero, HeroContent, Heading, Info, Item, CoffeeList, CoffeeHeader, Filter, FilterItem, CoffeeContainer } from './styles';
 import { Card } from '../../components/Card';
-
+import { coffees } from '../../../data.json';
 
 export function Home() {
   return (
@@ -51,15 +51,9 @@ export function Home() {
         </Filter>
         </CoffeeHeader>
         <CoffeeList>
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
+        {coffees.map((coffee) => (
+            <Card key={coffee.id} coffee={coffee} />
+          ))}
         </CoffeeList>
       </CoffeeContainer>
     </Container >

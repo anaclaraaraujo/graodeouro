@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components";
-import bgHero from '/bg_hero.svg'
+import bgHero from '/images/bg_hero.svg';
 
 export const Container = styled.section`
   width: 100%;

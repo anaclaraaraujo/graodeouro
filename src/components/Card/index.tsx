@@ -1,40 +1,44 @@
 import { ShoppingCartSimple } from '@phosphor-icons/react';
-import {
-  Container,
-  CoffeeImg,
-  Control,
-  Description,
-  Order,
-  Price,
-  Tags,
-  Title,
-} from './styles';
-import { useTheme } from 'styled-components'
-import imgCoffee from '/images/mochaccino.png';
+import { useTheme } from 'styled-components';
 import { QuantityInput } from '../Form';
+import { Container, CoffeeImg, Control, Description, Order, Price, Tags, Title } from './styles';
 
-export function Card() {
+type Props = {
+  coffee: {
+    id: string
+    title: string
+    description: string
+    tags: string[]
+    price: number
+    image: string
+  }
+}
+
+export function Card({ coffee }: Props) {
   const theme = useTheme()
 
   return (
     <Container>
-      <CoffeeImg src={imgCoffee} alt="" />
+      <CoffeeImg src={coffee.image} alt={coffee.title} />
+
       <Tags>
-        <span>Tradicional</span>
-        
-        <span>Com leite</span>
+        {coffee.tags.map((tag) => (
+          <span key={tag}>{tag}</span>
+        ))}
       </Tags>
-      <Title>Mocaccino</Title>
-      <Description>Café expresso com calda de chocolate, pouco leite e espuma</Description>
+
+      <Title>{coffee.title}</Title>
+      <Description>{coffee.description}</Description>
+
       <Control>
         <Price>
           <span>R$</span>
-          <span>9,90</span>
+          <span>{coffee.price.toFixed(2)}</span>
         </Price>
+
         <Order>
           <QuantityInput />
           <button>
-            {/* <CheckFat weight="fill" size={22}/> color={theme.colors['base-card']} */}
             <ShoppingCartSimple weight="fill" size={22} color={theme.colors['gray-300']} />
           </button>
         </Order>

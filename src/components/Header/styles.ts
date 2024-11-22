@@ -29,11 +29,12 @@ export const HeaderButton = styled.button<{ $variant: 'purple' | 'yellow' }>`
   align-items: center;
   justify-content: center;
   gap: 8px;
+
   min-width: 3.8rem;
   height: 3.8rem;
   border-radius: 6px;
   border: none;
-  padding: 0.8rem 1.6rem;
+  padding: 0.8rem;
   position: relative;
   cursor: inherit;
 
