@@ -26,6 +26,7 @@ export const defaultTheme = {
     roboto: "'Roboto', sans-serif",
     baloo: "'Baloo 2', sans-serif"
   },
+
   fonts: {
     titleXL: css`
       font-family: 'Baloo 2', sans-serif;
