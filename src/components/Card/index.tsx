@@ -5,7 +5,7 @@ import { Container, CoffeeImg, Control, Description, Order, Price, Tags, Title }
 import { useEffect, useState } from 'react';
 import { useCart } from '../../contexts/CartContext';
 
-type Props = {
+type CardProps = {
   coffee: {
     id: string;
     title: string;
@@ -16,7 +16,7 @@ type Props = {
   };
 };
 
-export function Card({ coffee }: Props) {
+export function Card({ coffee }: CardProps) {
   const [quantity, setQuantity] = useState(1);
   const [isItemAdded, setIsItemAdded] = useState(false);
   const { addItem } = useCart();

@@ -1,10 +1,39 @@
 import imgHero from '/images/hero.png';
 import { Coffee, Package, ShoppingCart, Timer } from '@phosphor-icons/react';
-import { Container, Hero, HeroContent, Heading, Info, Item, CoffeeList, CoffeeHeader, Filter, FilterItem, CoffeeContainer } from './styles';
 import { Card } from '../../components/Card';
 import { coffees } from '../../../data.json';
+import { useState } from 'react';
+import { FilterItem } from '../../components/Filter';
+import { 
+  Container,
+  Hero,
+  HeroContent,
+  Heading,
+  Info,
+  Item,
+  CoffeeList,
+  CoffeeHeader,
+  Filter,
+  CoffeeContainer } 
+from './styles';
 
 export function Home() {
+
+  const [selectedTag, setSelectedTag] = useState<string | null>(null);
+
+  const filterCoffees = (coffee: typeof coffees[0]) => {
+    if (!selectedTag) return true;
+    return coffee.tags.includes(selectedTag);
+  }
+
+  const coffeeTags = [
+    'tradicional',
+    'especial',
+    'com leite',
+    'alcoólico',
+    'gelado',
+  ];
+
   return (
     <Container>
       <Hero>
@@ -15,7 +44,7 @@ export function Home() {
           </Heading>
           <Info>
             <Item $variant="yellow-700">
-            <ShoppingCart size={32} weight="fill" />
+              <ShoppingCart size={32} weight="fill" />
               <span>Compra simples e segura</span>
             </Item>
 
@@ -41,19 +70,30 @@ export function Home() {
 
       <CoffeeContainer>
         <CoffeeHeader>
-        <h1>Nossos cafés</h1>
-        <Filter>
-          <FilterItem>Tradicional</FilterItem>
-          <FilterItem>especial</FilterItem>
-          <FilterItem>com leite</FilterItem>
-          <FilterItem>alcoólico</FilterItem>
-          <FilterItem>gelado</FilterItem>
-        </Filter>
+          <h1>Nossos cafés</h1>
+          <Filter>
+            {coffeeTags.map(tag => (
+              <FilterItem
+                key={tag}
+                label={tag}
+                $isSelected={selectedTag === tag}
+                onSelect={setSelectedTag}
+              />
+            ))}
+            <FilterItem
+              key="todos"
+              label="Todos"
+              $isSelected={selectedTag === null || selectedTag === ''}
+              onSelect={() => setSelectedTag('')} 
+            />
+          </Filter>
         </CoffeeHeader>
         <CoffeeList>
-        {coffees.map((coffee) => (
-            <Card key={coffee.id} coffee={coffee} />
-          ))}
+          <CoffeeList>
+            {coffees.filter(filterCoffees).map((coffee) => (
+              <Card key={coffee.id} coffee={coffee} />
+            ))}
+          </CoffeeList>
         </CoffeeList>
       </CoffeeContainer>
     </Container >

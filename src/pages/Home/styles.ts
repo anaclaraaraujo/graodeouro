@@ -109,31 +109,8 @@ export const Filter = styled.div`
   gap: .8rem;
 `;
 
-
-export const FilterItem = styled.button`
-  display: flex;
-  border-radius: 999px;
-  border: 1px solid #DBAC2C;
-  
-  padding: .6rem 1.2rem;
-
-  background: none;
-
-  text-transform: uppercase;
-  color: ${(props) => props.theme.colors['yellow-700']};
-  font-size: 1.2rem;
-  font-weight: bold;
-
-  cursor: pointer;
-
-  &:hover {
-    background: ${(props) => props.theme.colors['yellow-700']};
-    color: ${(props) => props.theme.colors.white};
-  }
-`;
-
 export const CoffeeList = styled.div`
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(25.6rem, 1fr));
+  display: flex;
+  flex-wrap: wrap;
   gap: 3.2rem;
 `;
