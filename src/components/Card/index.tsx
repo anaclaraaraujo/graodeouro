@@ -3,7 +3,7 @@ import { useTheme } from 'styled-components';
 import { QuantityInput } from '../QuantityInput';
 import { Container, CoffeeImg, Control, Description, Order, Price, Tags, Title } from './styles';
 import { useEffect, useState } from 'react';
-import { useCart } from '../../contexts/CartContext';
+import { useCart } from '../../hooks/useCart';
 
 type CardProps = {
   coffee: {
@@ -35,7 +35,7 @@ export function Card({ coffee }: CardProps) {
 
   // Mark item as added to cart and reset quantity
   function handleAddItem() {
-    addItem();
+    addItem({ id: coffee.id, quantity });
     setIsItemAdded(true);
     setQuantity(1);
   }

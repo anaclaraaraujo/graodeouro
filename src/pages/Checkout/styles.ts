@@ -2,11 +2,10 @@ import styled from 'styled-components';
 
 export const Container = styled.label`
   max-width: 112rem;
-  margin: 0 auto;
 
   margin-top: 10.4rem;
 
-  padding: 4rem 2rem;
+  padding: 4rem 16rem;
   
   display: flex;
   gap: 3.2rem;

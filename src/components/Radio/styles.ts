@@ -10,13 +10,15 @@ export const Container = styled.label`
 
   border-radius: .6rem;
   border: 1px solid transparent;
-  background-color: ${(props) => props.theme.colors['gray-950']};
+  background: ${(props) => props.theme.colors['gray-500']};
   
   ${(props) => props.theme.fonts.buttonM};
   color: ${(props) => props.theme.colors['gray-800']};
   text-transform: uppercase;
   
   transition: all 0.2s;
+
+  cursor: pointer;
 
   &:hover {
     background-color: ${(props) => props.theme.colors['gray-600']};
