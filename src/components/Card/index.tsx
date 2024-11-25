@@ -1,8 +1,9 @@
 import { CheckFat, ShoppingCartSimple } from '@phosphor-icons/react';
 import { useTheme } from 'styled-components';
-import { QuantityInput } from '../Form/QuantityInput';
+import { QuantityInput } from '../QuantityInput';
 import { Container, CoffeeImg, Control, Description, Order, Price, Tags, Title } from './styles';
 import { useEffect, useState } from 'react';
+import { useCart } from '../../contexts/CartContext';
 
 type Props = {
   coffee: {
@@ -16,44 +17,38 @@ type Props = {
 };
 
 export function Card({ coffee }: Props) {
-  // Estado para controlar a quantidade do item selecionado
   const [quantity, setQuantity] = useState(1);
-
-  // Estado para indicar se o item foi adicionado ao carrinho
   const [isItemAdded, setIsItemAdded] = useState(false);
+  const { addItem } = useCart();
   
   const theme = useTheme();
 
-  // Incrementa a quantidade do item
   function incrementQuantity() {
     setQuantity((state) => state + 1);
   }
 
-  // Decrementa a quantidade do item (mantendo no mínimo 1)
   function decrementQuantity() {
     if (quantity > 1) {
       setQuantity((state) => state - 1);
     }
   }
 
-  // Marca o item como adicionado ao carrinho e reseta a quantidade
+  // Mark item as added to cart and reset quantity
   function handleAddItem() {
+    addItem();
     setIsItemAdded(true);
     setQuantity(1);
   }
 
-  // Efeito para exibir o estado "adicionado" por 1 segundo
   useEffect(() => {
     let timeout: number;
 
     if (isItemAdded) {
-      // Define um temporizador para resetar o estado após 1 segundo
       timeout = setTimeout(() => {
         setIsItemAdded(false);
       }, 1000);
     }
 
-    // Limpa o temporizador quando o componente for desmontado ou o estado mudar
     return () => {
       if (timeout) {
         clearTimeout(timeout);

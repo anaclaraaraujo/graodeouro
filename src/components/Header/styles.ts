@@ -9,7 +9,7 @@ export const HeaderContainer = styled.header`
   align-items: center;
   justify-content: space-between;
   
-  position: sticky;
+  position: fixed;
   top: 0;
   left: 0;
   z-index: 5;

@@ -3,13 +3,15 @@ import bgHero from '/images/bg_hero.svg';
 
 export const Container = styled.section`
   width: 100%;
+
+  margin-top:  10.4rem;
 `;
 
 export const Hero = styled.div`
   width: 100%;
   background: url(${bgHero}) no-repeat center;
   background-size: cover;
-  padding: 9.4rem 16rem;
+  padding: 9.2rem 16rem;
 
   display: flex;
   gap: 5.6rem;
@@ -75,8 +77,6 @@ export const Item = styled.div<{ $variant: 'yellow-700' | 'gray-800' | 'yellow-5
   }
 `;
 
-
-
 export const CoffeeContainer = styled.section`
   width: 100%;
   padding: 3.2rem 16rem;
@@ -84,8 +84,6 @@ export const CoffeeContainer = styled.section`
   display: flex;
   flex-direction: column;
   gap: 5.4rem;
-
-  
 `;
 
 export const CoffeeHeader = styled.div`
