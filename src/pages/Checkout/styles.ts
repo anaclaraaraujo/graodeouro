@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 export const Container = styled.label`
+  width: 100%;
   max-width: 112rem;
 
   margin-top: 10.4rem;
@@ -163,6 +164,10 @@ export const CartTotal = styled.div`
     height: 1px;
     background-color: ${(props) => props.theme.colors['gray-500']};
     margin: 2.4rem 0;
+  }
+
+  p {
+    margin-bottom: 1.6rem;
   }
 `
 

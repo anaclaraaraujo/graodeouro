@@ -1,4 +1,4 @@
-import { Fragment } from 'react';
+import { Fragment, useMemo } from 'react';
 import { Bank, CreditCard, CurrencyDollar, MapPin, Money, Trash } from '@phosphor-icons/react';
 import { TextInput } from '../../components/TextInput';
 import { Radio } from '../../components/Radio';
@@ -57,22 +57,21 @@ const shippingPrice = 3.5
 export function Checkout() {
   const { cart, checkout, incrementItemQuantity, decrementItemQuantity, removeItem } = useCart()
 
-  const coffeesInCart = cart.map((item) => {
-    const coffeeInfo = coffees.find((coffee) => coffee.id === item.id)
+  const coffeesInCart = useMemo(() => {
+    return cart.map((item) => {
+      const coffeeInfo = coffees.find((coffee) => coffee.id === item.id);
+      
+      if (!coffeeInfo) {
+        throw new Error('Invalid coffee.')
+      }
+  
+      return { ...coffeeInfo, quantity: item.quantity };
+    }).filter(Boolean);
+  }, [cart]);
 
-    if (!coffeeInfo) {
-      throw new Error('Invalid coffee.')
-    }
-
-    return {
-      ...coffeeInfo,
-      quantity: item.quantity,
-    }
-  })
-
-  const totalItemsPrice = coffeesInCart.reduce((previousValue, currentItem) => {
-    return (previousValue += currentItem.price * currentItem.quantity)
-  }, 0)
+  const totalItemsPrice = useMemo(() => {
+    return coffeesInCart.reduce((acc, item) => acc + item.price * item.quantity, 0);
+  }, [coffeesInCart]);
 
   const {
     register,
@@ -236,31 +235,35 @@ export function Checkout() {
         <h2>Cafés selecionados</h2>
 
         <CartTotal>
-          {coffeesInCart.map((coffee) => (
-            <Fragment key={coffee.id}>
-              <Coffee>
-                <div>
-                  <img src={coffee.image} alt={coffee.title} />
+          {coffeesInCart.length === 0 ? (
+            <p>Seu carrinho está vazio. <br /> Adicione itens para continuar.</p>
+          ) : (
+            coffeesInCart.map((coffee) => (
+              <Fragment key={coffee.id}>
+                <Coffee>
                   <div>
-                    <span>{coffee.title}</span>
-                    <CoffeeInfo>
-                      <QuantityInput
-                        quantity={coffee.quantity}
-                        incrementQuantity={() => handleItemIncrement(coffee.id)}
-                        decrementQuantity={() => handleItemDecrement(coffee.id)}
-                      />
-                      <button onClick={() => handleItemRemove(coffee.id)}>
-                        <Trash />
-                        <span>Remover</span>
-                      </button>
-                    </CoffeeInfo>
+                    <img src={coffee.image} alt={coffee.title} />
+                    <div>
+                      <span>{coffee.title}</span>
+                      <CoffeeInfo>
+                        <QuantityInput
+                          quantity={coffee.quantity}
+                          incrementQuantity={() => handleItemIncrement(coffee.id)}
+                          decrementQuantity={() => handleItemDecrement(coffee.id)}
+                        />
+                        <button onClick={() => handleItemRemove(coffee.id)}>
+                          <Trash />
+                          <span>Remover</span>
+                        </button>
+                      </CoffeeInfo>
+                    </div>
                   </div>
-                </div>
-                <aside>R$ {coffee.price?.toFixed(2)}</aside>
-              </Coffee>
-              <span />
-            </Fragment>
-          ))}
+                  <aside>R$ {coffee.price?.toFixed(2)}</aside>
+                </Coffee>
+                <span />
+              </Fragment>
+            ))
+          )}
 
 
           <CartTotalInfo>
@@ -295,9 +298,14 @@ export function Checkout() {
             </div>
           </CartTotalInfo>
 
-          <CheckoutButton type="submit" form="order">
+          <CheckoutButton 
+            type="submit" 
+            form="order" 
+            disabled={!cart.length || Object.keys(errors).length > 0}
+          >
             Confirmar pedido
           </CheckoutButton>
+
         </CartTotal>
       </InfoContainer>
     </Container>

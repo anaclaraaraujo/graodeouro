@@ -10,7 +10,7 @@ export function Header() {
   return (
     <HeaderContainer>
       <NavLink to="/">
-        <img src={logo} alt="" />
+        <img src={logo} alt="Logotipo da Coffee Delivery" />
       </NavLink>
 
       <HeaderNav>
@@ -19,8 +19,8 @@ export function Header() {
           Catalão, GO
         </HeaderButton>
 
-        <NavLink to="/checkout" title="Checkout">
-          <HeaderButton $variant="yellow">
+        <NavLink to={cart.length > 0 ? "/checkout" : "#"} title="Checkout">
+          <HeaderButton $variant="yellow" disabled={cart.length === 0}>
             <ShoppingCart size={20} weight="fill" />
             {cart.length > 0 ? <span>{cart.length}</span> : null}
           </HeaderButton>

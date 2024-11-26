@@ -28,57 +28,50 @@ interface CartContextProviderProps {
   children: ReactNode
 }
 
+const initializer = () => {
+  try {
+    const storedStateAsJSON = localStorage.getItem('@graodeouro:cart-state-1.0.0');
+    return storedStateAsJSON
+      ? JSON.parse(storedStateAsJSON)
+      : { cart: [], orders: [] };
+
+  } catch {
+    return { cart: [], orders: [] };
+  }
+};
+
 export const CartContextProvider = ({ children }: CartContextProviderProps) => {
   const [cartState, dispatch] = useReducer(
-    cartReducer,
-    {
-      cart: [],
-      orders: [],
-    },
-    (cartState) => {
-      const storedStateAsJSON = localStorage.getItem(
-        '@graodeouro:cart-state-1.0.0',
-      )
+    cartReducer, { cart: [], orders: [] }, initializer);
 
-      if (storedStateAsJSON) {
-        return JSON.parse(storedStateAsJSON);
-      }
+  const navigate = useNavigate();
 
-      return cartState;
-    },
-  )
-
-  const navigate = useNavigate()
-
-  const { cart, orders } = cartState
+  const { cart, orders } = cartState;
 
   function addItem(item: Item) {
-    dispatch(addItemAction(item))
+    dispatch(addItemAction(item));
   }
 
   function removeItem(itemId: Item['id']) {
-    dispatch(removeItemAction(itemId))
+    dispatch(removeItemAction(itemId));
   }
 
   function checkout(order: OrderInfo) {
-    dispatch(checkoutCartAction(order, navigate))
+    dispatch(checkoutCartAction(order, navigate));
   }
 
   function incrementItemQuantity(itemId: Item['id']) {
-    dispatch(incrementItemQuantityAction(itemId))
+    dispatch(incrementItemQuantityAction(itemId));
   }
 
   function decrementItemQuantity(itemId: Item['id']) {
-    dispatch(decrementItemQuantityAction(itemId))
+    dispatch(decrementItemQuantityAction(itemId));
   }
 
   useEffect(() => {
-    if (cartState) {
-      const stateJSON = JSON.stringify(cartState)
-
-      localStorage.setItem('@graodeouro:cart-state-1.0.0', stateJSON)
-    }
-  }, [cartState])
+    const stateJSON = JSON.stringify(cartState);
+    localStorage.setItem('@graodeouro:cart-state-1.0.0', stateJSON);
+  }, [cartState]);
 
   return (
     <CartContext.Provider

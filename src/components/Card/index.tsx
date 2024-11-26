@@ -28,37 +28,42 @@ export function Card({ coffee }: CardProps) {
   }
 
   function decrementQuantity() {
-    if (quantity > 1) {
-      setQuantity((state) => state - 1);
-    }
+    setQuantity((state) => Math.max(state - 1, 1));
   }
 
-  // Mark item as added to cart and reset quantity
   function handleAddItem() {
-    addItem({ id: coffee.id, quantity });
-    setIsItemAdded(true);
-    setQuantity(1);
+    if (quantity > 0) {
+      addItem({ id: coffee.id, quantity });
+      setIsItemAdded(true);
+      setQuantity(1);
+    }
   }
 
   useEffect(() => {
-    let timeout: number;
-
     if (isItemAdded) {
-      timeout = setTimeout(() => {
-        setIsItemAdded(false);
-      }, 1000);
+      const timeout = setTimeout(() => setIsItemAdded(false), 1000);
+      return () => clearTimeout(timeout);
+    }
+  }, [isItemAdded]);
+
+  function formatPrice(price: number): string {
+    return price.toLocaleString('pt-BR', {
+      style: 'currency',
+      currency: 'BRL',
+    });
+  }
+
+  function renderButtonIcon() {
+    if (isItemAdded) {
+      return <CheckFat weight="fill" size={22} color={theme.colors['gray-300']} />;
     }
 
-    return () => {
-      if (timeout) {
-        clearTimeout(timeout);
-      }
-    };
-  }, [isItemAdded]);
+    return <ShoppingCartSimple weight="fill" size={22} color={theme.colors['gray-300']} />;
+  }
 
   return (
     <Container>
-      <CoffeeImg src={coffee.image} alt={coffee.title} />
+      <CoffeeImg src={coffee.image} alt={`Imagem do café ${coffee.title}`} />
 
       <Tags>
         {coffee.tags.map((tag) => (
@@ -72,7 +77,7 @@ export function Card({ coffee }: CardProps) {
       <Control>
         <Price>
           <span>R$</span>
-          <span>{coffee.price.toFixed(2)}</span>
+          <span>{formatPrice(coffee.price)}</span>
         </Price>
 
         <Order $itemAdded={isItemAdded}>
@@ -82,12 +87,12 @@ export function Card({ coffee }: CardProps) {
             decrementQuantity={decrementQuantity}
           />
 
-          <button disabled={isItemAdded} onClick={handleAddItem}>
-            {isItemAdded ? (
-              <CheckFat weight="fill" size={22} color={theme.colors['gray-300']} />
-            ) : (
-              <ShoppingCartSimple weight="fill" size={22} color={theme.colors['gray-300']} />
-            )}
+          <button
+            disabled={isItemAdded}
+            onClick={handleAddItem}
+            aria-label={isItemAdded ? 'Item adicionado ao carrinho' : 'Adicionar item ao carrinho'}
+          >
+            {renderButtonIcon()}
           </button>
         </Order>
       </Control>

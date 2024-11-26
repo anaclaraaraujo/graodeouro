@@ -3,18 +3,18 @@ import { ActionTypes } from './actions';
 import { OrderInfo } from '../pages/Checkout';
 
 export interface Item {
-  id: string;
-  quantity: number;
+  id: string
+  quantity: number
 }
 
 export interface Order extends OrderInfo {
-  id: number;
-  items: Item[];
+  id: number
+  items: Item[]
 }
 
 interface CartState {
-  cart: Item[];
-  orders: Order[];
+  cart: Item[]
+  orders: Order[]
 }
 
 export function cartReducer(state: CartState, action: any) {
@@ -26,9 +26,9 @@ export function cartReducer(state: CartState, action: any) {
         )
 
         if (itemAlreadyAdded) {
-          itemAlreadyAdded.quantity += action.payload.item.quantity;
+          itemAlreadyAdded.quantity += action.payload.item.quantity
         } else {
-          draft.cart.push(action.payload.item);
+          draft.cart.push(action.payload.item)
         }
       })
 
@@ -37,7 +37,7 @@ export function cartReducer(state: CartState, action: any) {
         const itemToRemoveId = draft.cart.findIndex(
           (item) => item.id === action.payload.itemId,
         )
-        draft.cart.splice(itemToRemoveId, 1);
+        draft.cart.splice(itemToRemoveId, 1)
       })
 
     case ActionTypes.INCREMENT_ITEM_QUANTITY:
@@ -47,7 +47,7 @@ export function cartReducer(state: CartState, action: any) {
         )
 
         if (itemToIncrement?.id) {
-          itemToIncrement.quantity += 1;
+          itemToIncrement.quantity += 1
         }
       })
 
@@ -58,7 +58,7 @@ export function cartReducer(state: CartState, action: any) {
         )
 
         if (itemToDecrement?.id && itemToDecrement.quantity > 1) {
-          itemToDecrement.quantity -= 1;
+          itemToDecrement.quantity -= 1
         }
       })
 
@@ -69,14 +69,13 @@ export function cartReducer(state: CartState, action: any) {
           items: state.cart,
           ...action.payload.order,
         }
-        
-        draft.orders.push(newOrder);
-        draft.cart = [];
+        draft.orders.push(newOrder)
+        draft.cart = []
 
-        action.payload.callback(`/order/${newOrder.id}/success`);
+        action.payload.callback(`/order/${newOrder.id}/success`)
       })
 
     default:
-      return state;
+      return state
   }
 }

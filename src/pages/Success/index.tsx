@@ -1,6 +1,6 @@
 import { CurrencyDollar, MapPin, Timer } from '@phosphor-icons/react'
 import { useTheme } from 'styled-components'
-import { useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import delivery  from '/images/delivery.svg'
 import { useCart } from '../../hooks/useCart'
 import { Container, Heading, Info, InfoContent, Order } from './styles'
@@ -16,8 +16,8 @@ export function Success() {
   }
   const theme = useTheme()
 
-  if (!orderInfo?.id) {
-    return null
+  if (!orderInfo) {
+    return <Link to="/" />;
   }
 
   return (
@@ -82,7 +82,8 @@ export function Success() {
         </Info>
       </Order>
 
-      <img src={delivery} alt="Pedido concluído" />
+      <img src={delivery} alt="Ilustração de entrega de café" role="img" />
+
     </Container>
   )
 }

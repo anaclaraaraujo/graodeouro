@@ -13,36 +13,28 @@ export enum ActionTypes {
 export function addItemAction(item: Item) {
   return {
     type: ActionTypes.ADD_ITEM,
-    payload: {
-      item,
-    },
+    payload: { item },
   }
 }
 
 export function removeItemAction(itemId: Item['id']) {
   return {
     type: ActionTypes.REMOVE_ITEM,
-    payload: {
-      itemId,
-    },
+    payload: { itemId },
   }
 }
 
 export function incrementItemQuantityAction(itemId: Item['id']) {
   return {
     type: ActionTypes.INCREMENT_ITEM_QUANTITY,
-    payload: {
-      itemId,
-    },
+    payload: { itemId },
   }
 }
 
 export function decrementItemQuantityAction(itemId: Item['id']) {
   return {
     type: ActionTypes.DECREMENT_ITEM_QUANTITY,
-    payload: {
-      itemId,
-    },
+    payload: { itemId },
   }
 }
 
@@ -52,9 +44,6 @@ export function checkoutCartAction(
 ) {
   return {
     type: ActionTypes.CHECKOUT_CART,
-    payload: {
-      order,
-      callback,
-    },
+    payload: { order, callback },
   }
 }

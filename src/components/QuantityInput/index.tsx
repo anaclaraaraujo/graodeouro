@@ -13,11 +13,11 @@ export function QuantityInput({ quantity, incrementQuantity, decrementQuantity }
 
   return (
     <Container>
-      <button onClick={decrementQuantity}>
+      <button onClick={decrementQuantity} aria-label="Diminuir quantidade">
         <Minus weight="bold" size={14} color={theme.colors['purple-500']}/>
       </button>
       <span>{quantity}</span>
-      <button onClick={incrementQuantity}>
+      <button onClick={incrementQuantity} aria-label="Aumentar quantidade" >
         <Plus weight="bold" size={14} color={theme.colors['purple-500']} />
       </button>
     </Container>
