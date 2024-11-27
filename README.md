@@ -17,6 +17,9 @@
   <img alt="@hookform/resolvers" src="https://img.shields.io/static/v1?label=%40hookform/resolvers&message=3.9.1&color=20232A&labelColor=EC5990">
 </p>
 
+
+<img src="public/images/mockup.png">
+
 ## Bibliotecas
 
 - **React**: Biblioteca JavaScript para construção de interfaces de usuário interativas.
