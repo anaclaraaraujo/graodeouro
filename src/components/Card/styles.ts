@@ -12,6 +12,10 @@ export const Container = styled.div`
   text-align: center;
   justify-content: center;
   align-items: center;
+
+  @media (max-width: 1024px) {
+    width: 100%;
+  }
 `;
 
 export const CoffeeImg = styled.img`
@@ -70,6 +74,7 @@ export const Control = styled.div`
   justify-content: space-between;
 
   margin-top: 3.2rem;
+  gap: 1rem;
 `;
 
 export const Price = styled.div`

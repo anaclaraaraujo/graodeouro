@@ -9,12 +9,6 @@ export const Container = styled.label`
   
   display: flex;
   gap: 3.2rem;
-
-  @media (max-width: 414px) {
-    padding: 2rem 2.4rem;
-
-    flex-direction: column;
-  } 
 `;
 
 export const InfoContainer = styled.div`
@@ -44,11 +38,6 @@ export const FormsContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 3.2rem;
-
-  @media (max-width: 414px) {
-    min-width: 100%;
-    padding: 2rem;
-  }
 `;
 
 export const AddressContainer = styled(FormsContainer)``;
@@ -84,14 +73,6 @@ export const AddressForm = styled.div`
     'neighborhood city state';
   grid-template-columns: 20rem 1fr 6rem;
   grid-gap: 1.6rem 1.2rem;
-
-
-  @media (max-width: 414px) {
-    display: flex;
-    flex-direction: column;
-
-    width: 100%;
-  } 
 `;
 
 export const PaymentContainer = styled(FormsContainer)``
@@ -113,10 +94,6 @@ export const PaymentOptions = styled.div`
     align-items: center;
     justify-content: space-between;
     gap: 1.2rem;
-
-    @media (max-width: 414px) {
-      flex-direction: column;
-    } 
   }
 `;
 
@@ -144,23 +121,6 @@ export const Coffee = styled.div`
   > aside {
     font-weight: bold;
   }
-
-  @media (max-width: 414px) {
-    flex-direction: column;
-    align-items: flex-end;
-    gap: 2rem;
-
-    > div {
-      > img {
-        width: 4rem;
-        height: 4rem;
-      } 
-
-      > div {
-        gap: 1rem;
-      }
-  }
-  } 
 `;
 
 export const CoffeeInfo = styled.div`
@@ -210,11 +170,6 @@ export const CartTotal = styled.div`
   p {
     margin-bottom: 1.6rem;
   }
-
-  @media (max-width: 414px) {
-    padding: 2rem;
-    min-width: 100%;
-  } 
 `;
 
 export const CartTotalInfo = styled.div`

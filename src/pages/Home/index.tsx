@@ -89,6 +89,7 @@ export function Home() {
             ))}
           </Filter>
         </CoffeeHeader>
+        
         <CoffeeList>
           {filteredCoffees.length > 0 ? (
             filteredCoffees.slice(0, visibleItems).map(coffee => (

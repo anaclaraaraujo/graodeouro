@@ -9,6 +9,7 @@ export const Container = styled.section`
 
 export const Hero = styled.div`
   width: 100%;
+
   background: url(${bgHero}) no-repeat center;
   background-size: cover;
   padding: 9.2rem 16rem;
@@ -18,22 +19,23 @@ export const Hero = styled.div`
   align-items: center;
   justify-content: space-between;
 
+  img {
+    width: 80%;
+  }
+
+  @media (max-width: 480px) {
+    padding: 9.2rem 2.4rem;
+  }
+
   @media (max-width: 768px) {
-    flex-direction: column;
-    padding: 2rem 2.4rem;
+    padding: 9.2rem 4rem;
+  }
 
-    img {
-      max-width: 100%;
-    }
-  } 
-
-  @media (max-width: 768px) {
-    padding: 2rem;
-
+  @media (max-width: 1024px) {
     img {
       display: none;
     }
-  } 
+  }
 `;
 
 export const HeroContent = styled.div`
@@ -42,10 +44,6 @@ export const HeroContent = styled.div`
   flex-direction: column;
   justify-content: space-between;
   gap: 6.6rem;
-
-  @media (max-width: 768px) {
-    max-width: 100%;
-  } 
 `;
 
 export const Heading = styled.div`
@@ -76,10 +74,10 @@ export const Info = styled.div`
   grid-template-columns: 1fr 1fr;
   grid-row-gap: 2rem;
 
-  @media (max-width: 414px) {
+  @media (max-width: 480px) {
     display: flex;
     flex-direction: column;
-  } 
+  }
 `;
 
 export const Item = styled.div<{ $variant: 'yellow-700' | 'gray-800' | 'yellow-500' | 'purple-500' }>`
@@ -113,14 +111,13 @@ export const CoffeeContainer = styled.section`
 
   align-items: center;
 
-  @media (max-width: 414px) {
-    flex-direction: column;
-    padding: 2rem 2.4rem;
-  } 
+  @media (max-width: 480px) {
+    padding: 3.2rem 2.4rem;
+  }
 
   @media (max-width: 768px) {
-    padding: 2rem 2.4rem;
-  } 
+    padding: 3.2rem 4rem;
+  }
 `;
 
 export const CoffeeHeader = styled.div`
@@ -131,18 +128,20 @@ export const CoffeeHeader = styled.div`
   justify-content: space-between;
 
   h1 {
-      font-size: 3.2rem;
-      font-weight: 900;
-      line-height: 130%;
+    font-size: 3.2rem;
+    font-weight: 900;
+    line-height: 130%;
 
-      font-family: "Baloo 2", serif;
-      color: ${(props) => props.theme.colors['gray-900']};
-    }
+    font-family: "Baloo 2", serif;
+    color: ${(props) => props.theme.colors['gray-900']};
+  }
 
-  @media (max-width: 768px) {
+  @media (max-width: 1024px) {
+    display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: 1.6rem;
+
+    gap: 1rem;
   }
 `;
 
@@ -151,7 +150,7 @@ export const Filter = styled.div`
   align-items: center;
   gap: .8rem;
 
-  @media (max-width: 768px) {
+  @media (max-width: 480px) {
     width: 100%;
     overflow: scroll;
 
@@ -164,20 +163,28 @@ export const Filter = styled.div`
 `;
 
 export const CoffeeList = styled.div`
-  display: flex;
+  /* display: flex;
   flex-wrap: wrap;
-  gap: 3.2rem;
+  gap: 3.2rem; */
 
-  @media (max-width: 768px) {
-    justify-content: center;
-    justify-content: space-around;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+
+  @media (max-width: 1024px) {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (max-width: 480px) {
+    display: grid;
+    grid-template-columns: 1fr;
   }
 `;
 
 export const ButtonSeeMore = styled.button`
-  margin-top: 2.4rem;
-  max-width: 31rem;
-  padding: 1.2rem;
+  width: 32rem;
+  padding: 1.6rem 3.2rem;
   text-transform: uppercase;
 
   ${(props) => props.theme.fonts.buttonG};
@@ -191,4 +198,8 @@ export const ButtonSeeMore = styled.button`
   }
 
   border-radius: 6px;
+
+  @media (max-width: 1024px) {
+    width: 100%;
+  }
 `;

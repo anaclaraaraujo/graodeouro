@@ -16,16 +16,6 @@ export const Container = styled.main`
   img {
     margin-bottom: -1.3rem;
   }
-
-  @media (max-width: 414px) {
-    padding: 2rem 2.4rem;
-
-    flex-direction: column;
-
-    img {
-      width: 100%;
-    }
-  } 
 `;
 
 export const Order = styled.section`
@@ -85,8 +75,4 @@ export const InfoContent = styled.div`
     display: flex;
     flex-direction: column;
   }
-
-  @media (max-width: 414px) {
-    padding: 2rem;
-  } 
 `;

@@ -16,12 +16,16 @@ export const HeaderContainer = styled.header`
 
   padding: 3.2rem 16rem;
 
-  @media (max-width: 768px) {
-    padding: 2rem 2.4rem;
+  @media (max-width: 480px) {
+    padding: 3.2rem 2.4rem;
 
     img {
-      width: 5rem;
+      width: 6rem;
     }
+  }
+
+  @media (max-width: 768px) {
+    padding: 3.2rem 4rem;
   }
 `;
 
@@ -76,18 +80,11 @@ export const HeaderButton = styled.button<{ $variant: 'purple' | 'yellow' }>`
     `
   }
 
-
-  @media (max-width: 414px) {
-    min-width: 3rem;
-    height: 3rem;
-    font-size: 1.4rem;
+  @media (max-width: 480px) {
+    font-size: 1.2rem;
 
     svg {
       width: 1.6rem;
-    }
-
-    span {
-      font-size: 1rem;
     }
   }
 `;
