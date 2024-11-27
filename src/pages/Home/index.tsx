@@ -40,32 +40,34 @@ export function Home() {
   return (
     <Container>
       <Hero>
-        <HeroContent>
-          <Heading>
-            <h1>Encontre o café perfeito para qualquer hora do dia</h1>
-            <p>Com o Coffee Delivery você recebe seu café onde estiver, a qualquer hora</p>
-          </Heading>
-          <Info>
-            <Item $variant="yellow-700">
-              <ShoppingCart size={32} weight="fill" aria-label="Carrinho de compras" />
-              <span>Compra simples e segura</span>
-            </Item>
-            <Item $variant="gray-800">
-              <Package size={32} weight="fill" aria-label="Embalagem segura" />
-              <span>Embalagem mantém o café intacto</span>
-            </Item>
-            <Item $variant="yellow-500">
-              <Timer size={32} weight="fill" aria-label="Entrega rápida" />
-              <span>Entrega rápida e rastreada</span>
-            </Item>
-            <Item $variant="purple-500">
-              <Coffee size={32} weight="fill" aria-label="Café fresquinho" />
-              <span>O café chega fresquinho até você</span>
-            </Item>
-          </Info>
-        </HeroContent>
+        <div>
+          <HeroContent>
+            <Heading>
+              <h1>Encontre o café perfeito para qualquer hora do dia</h1>
+              <p>Com o Coffee Delivery você recebe seu café onde estiver, a qualquer hora</p>
+            </Heading>
+            <Info>
+              <Item $variant="yellow-700">
+                <ShoppingCart size={32} weight="fill" aria-label="Carrinho de compras" />
+                <span>Compra simples e segura</span>
+              </Item>
+              <Item $variant="gray-800">
+                <Package size={32} weight="fill" aria-label="Embalagem segura" />
+                <span>Embalagem mantém o café intacto</span>
+              </Item>
+              <Item $variant="yellow-500">
+                <Timer size={32} weight="fill" aria-label="Entrega rápida" />
+                <span>Entrega rápida e rastreada</span>
+              </Item>
+              <Item $variant="purple-500">
+                <Coffee size={32} weight="fill" aria-label="Café fresquinho" />
+                <span>O café chega fresquinho até você</span>
+              </Item>
+            </Info>
+          </HeroContent>
 
-        <img src={imgHero} alt="Xícara de café e grãos ao fundo" />
+          <img src={imgHero} alt="Xícara de café e grãos ao fundo" />
+        </div>
       </Hero>
 
       <CoffeeContainer>
@@ -89,7 +91,7 @@ export function Home() {
             ))}
           </Filter>
         </CoffeeHeader>
-        
+
         <CoffeeList>
           {filteredCoffees.length > 0 ? (
             filteredCoffees.slice(0, visibleItems).map(coffee => (

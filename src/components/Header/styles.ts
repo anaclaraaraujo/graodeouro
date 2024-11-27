@@ -3,18 +3,31 @@ import styled, { css, } from 'styled-components';
 export const HeaderContainer = styled.header`
   width: 100%;
   height: 10.4rem;
-  background: ${(props) => props.theme.colors['gray-100']};
 
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: space-between;
+  padding: 3.2rem 16rem;
   
+  background: ${({ theme }) => theme.colors['gray-100']};
+
   position: fixed;
   top: 0;
   left: 0;
   z-index: 5;
 
-  padding: 3.2rem 16rem;
+  > div {
+    width: 100%;
+    max-width: 111.6rem;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  @media (max-width: 1024px) {
+    padding: 3.2rem 16rem;
+  }
 
   @media (max-width: 768px) {
     padding: 3.2rem 4rem;
@@ -57,7 +70,7 @@ export const HeaderButton = styled.button<{ $variant: 'purple' | 'yellow' }>`
     border-radius: 50%;
     top: calc(-2rem / 2);
     right: calc(-2rem / 2);
-    color: ${(props) => props.theme.colors.white};
+    color: ${({ theme }) => theme.colors.white};
 
     display: flex;
     align-items: center;
@@ -67,16 +80,16 @@ export const HeaderButton = styled.button<{ $variant: 'purple' | 'yellow' }>`
   }
 
   ${({ $variant }) => css`
-    background: ${(props) => props.theme.colors[`${$variant}-300`]};
-    color: ${(props) => props.theme.colors[`${$variant}-700`]};
+    background: ${({ theme }) => theme.colors[`${$variant}-300`]};
+    color: ${({ theme }) => theme.colors[`${$variant}-700`]};
 
-    span { background: ${(props) => props.theme.colors[`${$variant}-700`]}; }
+    span { background: ${({ theme }) => theme.colors[`${$variant}-700`]}; }
   `}
 
   ${({ $variant }) =>
     $variant === 'purple' &&
     css`   
-       svg { color: ${(props) => props.theme.colors['purple-700']}; }
+       svg { color: ${({ theme }) => theme.colors['purple-700']}; }
     `
   }
 

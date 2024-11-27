@@ -1,10 +1,9 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  background-color: ${(props) => props.theme.colors['gray-300']};
+  background-color: ${({ theme }) => theme.colors['gray-300']};
   padding: 0 2rem 2rem;
   border-radius: .6rem 3.6rem;
-  
   width: 25.6rem;
 
   display: flex;
@@ -36,35 +35,26 @@ export const Tags = styled.div`
   span {
     padding: .4rem .8rem;
     border-radius: 10rem;
-    background-color: ${(props) => props.theme.colors['yellow-300']};
-    color: ${(props) => props.theme.colors['yellow-700']};
+    background-color: ${({ theme }) => theme.colors['yellow-300']};
+    
+    ${({ theme }) => theme.fonts.textS};
+    color: ${({ theme }) => theme.colors['yellow-700']};
     text-transform: uppercase;
-
-    font-family: ${(props) => props.theme.font.roboto};
-    font-size: 1rem;
-    line-height: 130%;
-    font-weight: 700;
   }
 `;
 
 export const Title = styled.h3`
   margin-top: 1.6rem;
-  color: ${(props) => props.theme.colors['gray-950']};
-  font-family: ${(props) => props.theme.font.baloo};
-  font-size: 2rem;
-  line-height: 130%;
-  font-weight: 700;
+  color: ${({ theme }) => theme.colors['gray-950']};
+  font-size: ${({ theme }) => theme.fonts.titleS};
 `;
 
 export const Description = styled.span`
   margin-top: 8px;
   width: 100%;
 
-  color: ${(props) => props.theme.colors['gray-700']};
-  font-family: ${(props) => props.theme.font.roboto};
-  font-size: 1.4rem;
-  line-height: 130%;
-  font-weight: 400;
+  color: ${({ theme }) => theme.colors['gray-700']};
+  font-size: ${({ theme }) => theme.fonts.textM};
 `;
 
 export const Control = styled.div`
@@ -83,21 +73,13 @@ export const Price = styled.div`
   gap: 2px;
 
   span:first-child {
-    font-family: ${(props) => props.theme.font.roboto};
-    font-size: 1.4rem;
-    line-height: 130%;
-    font-weight: 400;
-    
-    color: ${(props) => props.theme.colors['gray-800']};
+    font-size: ${({ theme }) => theme.fonts.textS};
+    color: ${({ theme }) => theme.colors['gray-800']};
   }
 
   span:last-child {
-    font-family: ${(props) => props.theme.font.baloo};
-    font-size: 2.4rem;
-    line-height: 130%;
-    font-weight: 800;
-
-    color: ${(props) => props.theme.colors['gray-800']};
+    font-size: ${({ theme }) => theme.fonts.titleM};
+    color: ${({ theme }) => theme.colors['gray-800']};
   }
 `;
 

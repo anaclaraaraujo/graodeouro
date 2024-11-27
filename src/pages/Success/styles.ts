@@ -3,7 +3,7 @@ import styled from 'styled-components'
 export const Container = styled.main`
   width: 100%;
   max-width: 112rem;
-
+  margin: 10.4rem auto 0;
   padding: 8rem 0;
 
   display: flex;
@@ -11,10 +11,26 @@ export const Container = styled.main`
   justify-content: space-between;
   gap: 4rem;
 
-  margin: 10.4rem auto 0 auto;
-
   img {
     margin-bottom: -1.3rem;
+    width: 100%;
+  }
+
+  @media (max-width: 1024px) {
+    padding: 3.2rem 16rem;
+
+    img {
+      width: 50%;
+    }
+  }
+
+  @media (max-width: 768px) {
+    padding: 3.2rem 4rem;
+  }
+
+  @media (max-width: 480px) {
+    flex-direction: column;
+    padding: 3.2rem 2.4rem;
   }
 `;
 
@@ -27,16 +43,16 @@ export const Order = styled.section`
 export const Heading = styled.div`
   display: flex;
   flex-direction: column;
-  gap: .4rem;
+  gap: 0.4rem;
 
   h2 {
-    ${(props) => props.theme.fonts.titleL};
-    color: ${(props) => props.theme.colors['yellow-700']};
+    ${({ theme }) => theme.fonts.titleL};
+    color: ${({ theme }) => theme.colors['yellow-700']};
   }
 
   span {
-    ${(props) => props.theme.fonts.textL};
-    color: ${(props) => props.theme.colors['gray-900']};
+    ${({ theme }) => theme.fonts.textL};
+    color: ${({ theme }) => theme.colors['gray-900']};
   }
 `;
 
@@ -47,13 +63,16 @@ export const Info = styled.div`
 
   border-color: transparent;
   background-origin: border-box;
-  background-image: ${(props) =>
-    `linear-gradient(to bottom right, ${props.theme.colors['yellow-500']}, ${props.theme.colors['purple-500']})`};
+  background-image: linear-gradient(
+    to bottom right,
+    ${({ theme }) => theme.colors['yellow-500']},
+    ${({ theme }) => theme.colors['purple-500']}
+  );
 `;
 
 export const InfoContent = styled.div`
   padding: 4rem;
-  background-color: white;
+  background-color: ${({ theme }) => theme.colors.white};
   border-radius: .6rem 3.6rem;
 
   display: flex;

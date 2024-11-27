@@ -2,15 +2,20 @@ import styled from 'styled-components';
 
 export const Container = styled.label`
   width: 100%;
-  max-width: 112rem;
-
   margin-top: 10.4rem;
-  padding: 4rem 16rem;
   
   display: flex;
-  gap: 3.2rem;
+  align-items: center;
+  justify-content: center;
 
-  @media (max-width: 1024px) {
+  > div {
+    width: 100%;
+    max-width: 111.6rem;
+
+    display: flex;
+    gap: 3.2rem;
+
+    @media (max-width: 1024px) {
     padding: 3.2rem 16rem;
     flex-direction: column;
   }
@@ -23,6 +28,7 @@ export const Container = styled.label`
   @media (max-width: 480px) {
     padding: 3.2rem 2.4rem;
   }
+  }
 `;
 
 export const InfoContainer = styled.div`
@@ -31,8 +37,8 @@ export const InfoContainer = styled.div`
   gap: 1.6rem;
 
   h2 {
-    ${(props) => props.theme.fonts.titleXS};
-    color: ${(props) => props.theme.colors['gray-950']};
+    ${({ theme }) => theme.fonts.titleXS};
+    color: ${({ theme }) => theme.colors['gray-950']};
   }
 
   > form {
@@ -44,14 +50,18 @@ export const InfoContainer = styled.div`
 
 export const FormsContainer = styled.div`
   padding: 4rem;
-  border-radius: .6rem;
-  background-color: ${(props) => props.theme.colors['gray-300']};
+  border-radius: 0.6rem;
+  background-color: ${({ theme }) => theme.colors['gray-300']};  
   min-width: 64rem;
 
-  width: 100%;
   display: flex;
   flex-direction: column;
   gap: 3.2rem;
+
+  @media (min-width: 769px) and (max-width: 1280px) {
+    min-width: 40rem;
+    justify-content: space-between;
+  }
 
   @media (max-width: 768px) {
     min-width: 100%;
@@ -68,18 +78,18 @@ export const Heading = styled.div`
 
   div {
     span {
-      color: ${(props) => props.theme.colors['gray-900']};
+      color: ${({ theme }) => theme.colors['gray-900']};
     }
 
     p {
-      ${(props) => props.theme.fonts.textS};
+      ${({ theme }) => theme.fonts.textS};
     }
   }
 `;
 
 export const AddressHeading = styled(Heading)`
   svg {
-    color: ${(props) => props.theme.colors['yellow-700']};
+    color: ${({ theme }) => theme.colors['yellow-700']};
     width: 3.2rem;
   }
 `;
@@ -106,7 +116,7 @@ export const PaymentContainer = styled(FormsContainer)``
 
 export const PaymentHeading = styled(Heading)`
   svg {
-    color: ${(props) => props.theme.colors['purple-500']};
+    color: ${({ theme }) => theme.colors['purple-500']};
     width: 3.2rem;
   }
 `;
@@ -185,7 +195,7 @@ export const CoffeeInfo = styled.div`
 
   > button {
     padding: 6px 8px;
-    background-color: ${(props) => props.theme.colors['gray-500']};
+    background-color: ${({ theme }) => theme.colors['gray-500']};
     border-radius: .6rem;
     display: flex;
     align-items: center;
@@ -194,17 +204,17 @@ export const CoffeeInfo = styled.div`
     transition: all 0.2s;
 
     &:hover {
-      background-color: ${(props) => props.theme.colors['gray-600']};
+      background-color: ${({ theme }) => theme.colors['gray-600']};
     }
 
     > svg {
-      color: ${(props) => props.theme.colors['purple-500']};
+      color: ${({ theme }) => theme.colors['purple-500']};
     }
 
     > span {
-      ${(props) => props.theme.fonts.buttonM};
+      ${({ theme }) => theme.fonts.buttonM};
       text-transform: uppercase;
-      color: ${(props) => props.theme.colors['gray-800']};
+      color: ${({ theme }) => theme.colors['gray-800']};
     }
   }
 `;
@@ -212,13 +222,13 @@ export const CoffeeInfo = styled.div`
 export const CartTotal = styled.div`
   padding: 4rem;
   border-radius: .6rem 3.6rem;
-  background-color: ${(props) => props.theme.colors['gray-300']};
+  background-color: ${({ theme }) => theme.colors['gray-300']};
   min-width: 44.8rem;
 
   > span {
     display: block;
     height: 1px;
-    background-color: ${(props) => props.theme.colors['gray-500']};
+    background-color: ${({ theme }) => theme.colors['gray-500']};
     margin: 2.4rem 0;
   }
 
@@ -244,17 +254,17 @@ export const CartTotalInfo = styled.div`
     justify-content: space-between;
 
     span:first-child {
-      ${(props) => props.theme.fonts.textS};
+      ${({ theme }) => theme.fonts.textS};
     }
 
     span:last-child {
-      ${(props) => props.theme.fonts.textM};
+      ${({ theme }) => theme.fonts.textM};
     }
   }
 
   div:last-child {
     span {
-      ${(props) => props.theme.fonts.textL};
+      ${({ theme }) => theme.fonts.textL};
       font-weight: bold;
     }
   }
@@ -266,21 +276,20 @@ export const CheckoutButton = styled.button`
   padding: 1.2rem;
   text-transform: uppercase;
 
-  ${(props) => props.theme.fonts.buttonG};
-  color: ${(props) => props.theme.colors.white};
-  background-color: ${(props) => props.theme.colors['yellow-500']};
+  ${({ theme }) => theme.fonts.buttonG};
+  color: ${({ theme }) => theme.colors.white};
+  background-color: ${({ theme }) => theme.colors['yellow-500']};
 
   transition: all 0.2s;
 
   &:hover {
-    background-color: ${(props) => props.theme.colors['yellow-700']};
+    background-color: ${({ theme }) => theme.colors['yellow-700']};
   }
 
   border-radius: 6px;
 `;
 
 export const PaymentErrorMessage = styled.p`
-  ${(props) => props.theme.fonts.textXS};
-  font-weight: 400;
+  ${({ theme }) => theme.fonts.textXS};
   color: red;
 `;

@@ -10,10 +10,10 @@ export const Container = styled.label`
 
   border-radius: .6rem;
   border: 1px solid transparent;
-  background: ${(props) => props.theme.colors['gray-500']};
+  background: ${({ theme }) => theme.colors['gray-500']};
   
-  ${(props) => props.theme.fonts.buttonM};
-  color: ${(props) => props.theme.colors['gray-800']};
+  ${({ theme }) => theme.fonts.buttonM};
+  color: ${({ theme }) => theme.colors['gray-800']};
   text-transform: uppercase;
   
   transition: all 0.2s;
@@ -21,12 +21,12 @@ export const Container = styled.label`
   cursor: pointer;
 
   &:hover {
-    background-color: ${(props) => props.theme.colors['gray-600']};
+    background-color: ${({ theme }) => theme.colors['gray-600']};
   }
 
   &[data-state='true'] {
-    background-color: ${(props) => props.theme.colors['purple-300']};
-    border-color: ${(props) => props.theme.colors['purple-500']};
+    background-color: ${({ theme }) => theme.colors['purple-300']};
+    border-color: ${({ theme }) => theme.colors['purple-500']};
   }
 
   input {
@@ -34,6 +34,6 @@ export const Container = styled.label`
   }
 
   svg {
-    color: ${(props) => props.theme.colors['purple-500']};
+    color: ${({ theme }) => theme.colors['purple-500']};
   }
 `;

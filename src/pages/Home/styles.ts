@@ -1,9 +1,8 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import bgHero from '/images/bg_hero.svg';
 
 export const Container = styled.section`
   width: 100%;
-
   margin-top:  10.4rem;
 `;
 
@@ -12,15 +11,21 @@ export const Hero = styled.div`
 
   background: url(${bgHero}) no-repeat center;
   background-size: cover;
-  padding: 9.2rem 16rem;
+
+  padding: 9.2rem 0rem;
 
   display: flex;
-  gap: 5.6rem;
-  align-items: center;
-  justify-content: space-between;
+  justify-content: center;
+
+  > div {
+    max-width: 111.6rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 
   img {
-    width: 80%;
+    max-width: 32rem;
   }
 
   @media (max-width: 1024px) {
@@ -39,11 +44,15 @@ export const Hero = styled.div`
 `;
 
 export const HeroContent = styled.div`
-  max-width: 58.8rem;
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   gap: 6.6rem;
+
+  @media (min-width: 1024px) and (max-width: 1439px)  {
+    padding: 0rem 16rem;
+  }
 `;
 
 export const Heading = styled.div`
@@ -52,26 +61,19 @@ export const Heading = styled.div`
   gap: 1.6rem;
 
   h1 {
-    font-size: 4.8rem;
-    font-weight: 900;
-    line-height: 130%;
-
-    font-family: "Baloo 2", serif;
-    color: ${(props) => props.theme.colors['gray-950']};
+    ${({ theme }) => theme.fonts.titleXL};
+    color: ${({ theme }) => theme.colors['gray-950']};
   }
 
-  p { 
-    font-size: 2rem;
-    font-weight: 400;
-
-    font-family: "Roboto", serif;
-    color: ${(props) => props.theme.colors['gray-900']}
+  p {
+    ${({ theme }) => theme.fonts.textL};
+    color: ${({ theme }) => theme.colors['gray-900']};
   }
 `;
 
 export const Info = styled.div`
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(2, 1fr);
   grid-row-gap: 2rem;
 
   @media (max-width: 480px) {
@@ -86,18 +88,15 @@ export const Item = styled.div<{ $variant: 'yellow-700' | 'gray-800' | 'yellow-5
   gap: 1.2rem;
 
   svg {
-    padding: 8px;
-    border-radius: 999px;
-    color: ${(props) => props.theme.colors['gray-100']};
-
-    ${({ $variant }) => css`
-    background: ${(props) => props.theme.colors[`${$variant}`]};
-  `}
+    padding: 0.8rem;
+    border-radius: 50%;
+    background: ${({ theme, $variant }) => theme.colors[$variant]};
+    color: ${({ theme }) => theme.colors['gray-100']};
   }
 
   span {
-    font-size: 1.6rem;
-    color: ${(props) => props.theme.colors['gray-900']};
+    ${({ theme }) => theme.fonts.textM};
+    color: ${({ theme }) => theme.colors['gray-900']};
   }
 `;
 
@@ -108,7 +107,6 @@ export const CoffeeContainer = styled.section`
   display: flex;
   flex-direction: column;
   gap: 5.4rem;
-
   align-items: center;
 
   @media (max-width: 768px) {
@@ -122,25 +120,19 @@ export const CoffeeContainer = styled.section`
 
 export const CoffeeHeader = styled.div`
   width: 100%;
-
+  max-width: 111.6rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
 
   h1 {
-    font-size: 3.2rem;
-    font-weight: 900;
-    line-height: 130%;
-
-    font-family: "Baloo 2", serif;
-    color: ${(props) => props.theme.colors['gray-900']};
+    ${({ theme }) => theme.fonts.titleL};
+    color: ${({ theme }) => theme.colors['gray-900']};
   }
 
   @media (max-width: 1024px) {
-    display: flex;
     flex-direction: column;
     align-items: flex-start;
-
     gap: 1rem;
   }
 `;
@@ -148,12 +140,11 @@ export const CoffeeHeader = styled.div`
 export const Filter = styled.div`
   display: flex;
   align-items: center;
-  gap: .8rem;
+  gap: 0.8rem;
 
   @media (max-width: 480px) {
     width: 100%;
-    overflow: scroll;
-
+    overflow-x: auto;
     scrollbar-width: none;
 
     &::-webkit-scrollbar {
@@ -163,21 +154,20 @@ export const Filter = styled.div`
 `;
 
 export const CoffeeList = styled.div`
-  /* display: flex;
-  flex-wrap: wrap;
-  gap: 3.2rem; */
-
+max-width: 111.6rem;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 2rem;
 
   @media (max-width: 1024px) {
-    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (max-width: 769px) {
     grid-template-columns: repeat(2, 1fr);
   }
 
   @media (max-width: 480px) {
-    display: grid;
     grid-template-columns: 1fr;
   }
 `;
@@ -186,18 +176,16 @@ export const ButtonSeeMore = styled.button`
   width: 32rem;
   padding: 1.6rem 3.2rem;
   text-transform: uppercase;
+  border-radius: 6px;
 
-  ${(props) => props.theme.fonts.buttonG};
-  color: ${(props) => props.theme.colors.white};
-  background-color: ${(props) => props.theme.colors['yellow-500']};
-
-  transition: all 0.2s;
+  ${({ theme }) => theme.fonts.buttonG};
+  color: ${({ theme }) => theme.colors.white};
+  background-color: ${({ theme }) => theme.colors['yellow-500']};
+  transition: background-color 0.2s;
 
   &:hover {
-    background-color: ${(props) => props.theme.colors['yellow-700']};
+    background-color: ${({ theme }) => theme.colors['yellow-700']};
   }
-
-  border-radius: 6px;
 
   @media (max-width: 1024px) {
     width: 100%;
