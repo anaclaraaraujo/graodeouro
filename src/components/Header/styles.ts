@@ -16,16 +16,16 @@ export const HeaderContainer = styled.header`
 
   padding: 3.2rem 16rem;
 
+  @media (max-width: 768px) {
+    padding: 3.2rem 4rem;
+  }
+
   @media (max-width: 480px) {
     padding: 3.2rem 2.4rem;
 
     img {
       width: 6rem;
     }
-  }
-
-  @media (max-width: 768px) {
-    padding: 3.2rem 4rem;
   }
 `;
 

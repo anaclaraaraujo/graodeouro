@@ -9,6 +9,20 @@ export const Container = styled.label`
   
   display: flex;
   gap: 3.2rem;
+
+  @media (max-width: 1024px) {
+    padding: 3.2rem 16rem;
+    flex-direction: column;
+  }
+
+  @media (max-width: 768px) {
+    padding: 3.2rem 4rem;
+
+  }
+
+  @media (max-width: 480px) {
+    padding: 3.2rem 2.4rem;
+  }
 `;
 
 export const InfoContainer = styled.div`
@@ -32,12 +46,18 @@ export const FormsContainer = styled.div`
   padding: 4rem;
   border-radius: .6rem;
   background-color: ${(props) => props.theme.colors['gray-300']};
-  width: 100%;
   min-width: 64rem;
 
+  width: 100%;
   display: flex;
   flex-direction: column;
   gap: 3.2rem;
+
+  @media (max-width: 768px) {
+    min-width: 100%;
+
+    padding: 2rem;
+  }
 `;
 
 export const AddressContainer = styled(FormsContainer)``;
@@ -73,6 +93,13 @@ export const AddressForm = styled.div`
     'neighborhood city state';
   grid-template-columns: 20rem 1fr 6rem;
   grid-gap: 1.6rem 1.2rem;
+
+  @media (max-width: 480px) {
+    display: flex;
+    flex-direction: column;
+
+    width: 100%;
+  }
 `;
 
 export const PaymentContainer = styled(FormsContainer)``
@@ -94,6 +121,12 @@ export const PaymentOptions = styled.div`
     align-items: center;
     justify-content: space-between;
     gap: 1.2rem;
+  }
+
+  @media (max-width: 768px) {
+    > div {
+      flex-direction: column;
+    }
   }
 `;
 
@@ -120,6 +153,29 @@ export const Coffee = styled.div`
 
   > aside {
     font-weight: bold;
+  }
+
+  @media (max-width: 480px) {
+    flex-direction: column;
+    gap: 1.6rem;
+    align-items: flex-end;
+
+    > div {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      width: 100%;
+
+      > img {
+        width: 4.8rem;
+        height: 4.8rem;
+      }
+
+      > div {
+        gap: 1rem;
+      }
+    }
   }
 `;
 
@@ -157,7 +213,6 @@ export const CartTotal = styled.div`
   padding: 4rem;
   border-radius: .6rem 3.6rem;
   background-color: ${(props) => props.theme.colors['gray-300']};
-  width: 100%;
   min-width: 44.8rem;
 
   > span {
@@ -169,6 +224,12 @@ export const CartTotal = styled.div`
 
   p {
     margin-bottom: 1.6rem;
+  }
+
+
+  @media (max-width: 480px) {
+    padding: 2rem;
+    min-width: 100%;
   }
 `;
 

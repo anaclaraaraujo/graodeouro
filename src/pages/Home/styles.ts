@@ -23,18 +23,18 @@ export const Hero = styled.div`
     width: 80%;
   }
 
-  @media (max-width: 480px) {
-    padding: 9.2rem 2.4rem;
+  @media (max-width: 1024px) {
+    img {
+      display: none;
+    }
   }
 
   @media (max-width: 768px) {
     padding: 9.2rem 4rem;
   }
 
-  @media (max-width: 1024px) {
-    img {
-      display: none;
-    }
+  @media (max-width: 480px) {
+    padding: 9.2rem 2.4rem;
   }
 `;
 
@@ -111,12 +111,12 @@ export const CoffeeContainer = styled.section`
 
   align-items: center;
 
-  @media (max-width: 480px) {
-    padding: 3.2rem 2.4rem;
-  }
-
   @media (max-width: 768px) {
     padding: 3.2rem 4rem;
+  }
+
+  @media (max-width: 480px) {
+    padding: 3.2rem 2.4rem;
   }
 `;
 
