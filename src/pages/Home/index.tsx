@@ -1,10 +1,10 @@
+import { useMemo, useState } from 'react';
 import imgHero from '/images/hero.png';
 import { Coffee, Package, ShoppingCart, Timer } from '@phosphor-icons/react';
 import { Card } from '../../components/Card';
 import { coffees } from '../../../data.json';
-import { useMemo, useState } from 'react';
 import { FilterItem } from '../../components/Filter';
-import { 
+import {
   Container,
   Hero,
   HeroContent,
@@ -14,25 +14,18 @@ import {
   CoffeeList,
   CoffeeHeader,
   Filter,
-  CoffeeContainer } 
-from './styles';
+  CoffeeContainer,
+  ButtonSeeMore
+} from './styles';
 
 export function Home() {
-
   const [selectedTag, setSelectedTag] = useState<string | null>(null);
+  const [visibleItems, setVisibleItems] = useState(5); // Estado para controlar quantos itens mostrar inicialmente
 
   const filterCoffees = (coffee: typeof coffees[0]) => {
     if (!selectedTag) return true;
     return coffee.tags.includes(selectedTag);
-  }
-
-  // const coffeeTags = [
-  //   'tradicional',
-  //   'especial',
-  //   'com leite',
-  //   'alcoólico',
-  //   'gelado',
-  // ];
+  };
 
   const filteredCoffees = useMemo(() => {
     return coffees.filter(filterCoffees);
@@ -40,6 +33,9 @@ export function Home() {
 
   const coffeeTags = Array.from(new Set(coffees.flatMap(coffee => coffee.tags)));
 
+  const handleShowMore = () => {
+    setVisibleItems((prev) => prev + 5);
+  };
 
   return (
     <Container>
@@ -50,7 +46,7 @@ export function Home() {
             <p>Com o Coffee Delivery você recebe seu café onde estiver, a qualquer hora</p>
           </Heading>
           <Info>
-          <Item $variant="yellow-700">
+            <Item $variant="yellow-700">
               <ShoppingCart size={32} weight="fill" aria-label="Carrinho de compras" />
               <span>Compra simples e segura</span>
             </Item>
@@ -76,6 +72,13 @@ export function Home() {
         <CoffeeHeader>
           <h1>Nossos cafés</h1>
           <Filter>
+            <FilterItem
+              key="todos"
+              label="Todos"
+              $isSelected={selectedTag === null || selectedTag === ''}
+              onSelect={() => setSelectedTag(null)}
+            />
+
             {coffeeTags.map(tag => (
               <FilterItem
                 key={tag}
@@ -84,24 +87,24 @@ export function Home() {
                 onSelect={() => setSelectedTag(tag)}
               />
             ))}
-            <FilterItem
-              key="todos"
-              label="Todos"
-              $isSelected={selectedTag === null || selectedTag === ''}
-              onSelect={() => setSelectedTag(null)} 
-            />
           </Filter>
         </CoffeeHeader>
         <CoffeeList>
-          <CoffeeList>
           {filteredCoffees.length > 0 ? (
-            filteredCoffees.map(coffee => <Card key={coffee.id} coffee={coffee} />)
+            filteredCoffees.slice(0, visibleItems).map(coffee => (
+              <Card key={coffee.id} coffee={coffee} />
+            ))
           ) : (
             <p>Nenhum café encontrado para os filtros selecionados.</p>
           )}
-          </CoffeeList>
+
         </CoffeeList>
+        {visibleItems < filteredCoffees.length && (
+          <ButtonSeeMore onClick={handleShowMore}>
+            Ver Mais
+          </ButtonSeeMore>
+        )}
       </CoffeeContainer>
-    </Container >
-  )
+    </Container>
+  );
 }

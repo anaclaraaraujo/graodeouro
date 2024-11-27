@@ -17,6 +17,23 @@ export const Hero = styled.div`
   gap: 5.6rem;
   align-items: center;
   justify-content: space-between;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    padding: 2rem 2.4rem;
+
+    img {
+      max-width: 100%;
+    }
+  } 
+
+  @media (max-width: 768px) {
+    padding: 2rem;
+
+    img {
+      display: none;
+    }
+  } 
 `;
 
 export const HeroContent = styled.div`
@@ -25,6 +42,10 @@ export const HeroContent = styled.div`
   flex-direction: column;
   justify-content: space-between;
   gap: 6.6rem;
+
+  @media (max-width: 768px) {
+    max-width: 100%;
+  } 
 `;
 
 export const Heading = styled.div`
@@ -54,6 +75,11 @@ export const Info = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-row-gap: 2rem;
+
+  @media (max-width: 414px) {
+    display: flex;
+    flex-direction: column;
+  } 
 `;
 
 export const Item = styled.div<{ $variant: 'yellow-700' | 'gray-800' | 'yellow-500' | 'purple-500' }>`
@@ -84,6 +110,17 @@ export const CoffeeContainer = styled.section`
   display: flex;
   flex-direction: column;
   gap: 5.4rem;
+
+  align-items: center;
+
+  @media (max-width: 414px) {
+    flex-direction: column;
+    padding: 2rem 2.4rem;
+  } 
+
+  @media (max-width: 768px) {
+    padding: 2rem 2.4rem;
+  } 
 `;
 
 export const CoffeeHeader = styled.div`
@@ -101,16 +138,57 @@ export const CoffeeHeader = styled.div`
       font-family: "Baloo 2", serif;
       color: ${(props) => props.theme.colors['gray-900']};
     }
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.6rem;
+  }
 `;
 
 export const Filter = styled.div`
   display: flex;
   align-items: center;
   gap: .8rem;
+
+  @media (max-width: 768px) {
+    width: 100%;
+    overflow: scroll;
+
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
 `;
 
 export const CoffeeList = styled.div`
   display: flex;
   flex-wrap: wrap;
   gap: 3.2rem;
+
+  @media (max-width: 768px) {
+    justify-content: center;
+    justify-content: space-around;
+  }
+`;
+
+export const ButtonSeeMore = styled.button`
+  margin-top: 2.4rem;
+  max-width: 31rem;
+  padding: 1.2rem;
+  text-transform: uppercase;
+
+  ${(props) => props.theme.fonts.buttonG};
+  color: ${(props) => props.theme.colors.white};
+  background-color: ${(props) => props.theme.colors['yellow-500']};
+
+  transition: all 0.2s;
+
+  &:hover {
+    background-color: ${(props) => props.theme.colors['yellow-700']};
+  }
+
+  border-radius: 6px;
 `;

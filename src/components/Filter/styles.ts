@@ -5,7 +5,6 @@ interface FilterItemProps {
 }
 
 export const Container = styled.button<FilterItemProps>`
-
   display: flex;
   border-radius: 999px;
   border: 1px solid ${(props) => (
@@ -39,4 +38,6 @@ export const Container = styled.button<FilterItemProps>`
     props.$isSelected 
     ? props.theme.colors['yellow-700'] 
     : 'transparent')};
+
+  white-space: nowrap;
 `;

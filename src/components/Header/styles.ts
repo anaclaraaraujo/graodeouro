@@ -15,6 +15,14 @@ export const HeaderContainer = styled.header`
   z-index: 5;
 
   padding: 3.2rem 16rem;
+
+  @media (max-width: 768px) {
+    padding: 2rem 2.4rem;
+
+    img {
+      width: 5rem;
+    }
+  }
 `;
 
 export const HeaderNav = styled.div`
@@ -66,5 +74,20 @@ export const HeaderButton = styled.button<{ $variant: 'purple' | 'yellow' }>`
     css`   
        svg { color: ${(props) => props.theme.colors['purple-700']}; }
     `
+  }
+
+
+  @media (max-width: 414px) {
+    min-width: 3rem;
+    height: 3rem;
+    font-size: 1.4rem;
+
+    svg {
+      width: 1.6rem;
+    }
+
+    span {
+      font-size: 1rem;
+    }
   }
 `;

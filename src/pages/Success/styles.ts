@@ -16,13 +16,23 @@ export const Container = styled.main`
   img {
     margin-bottom: -1.3rem;
   }
-`
+
+  @media (max-width: 414px) {
+    padding: 2rem 2.4rem;
+
+    flex-direction: column;
+
+    img {
+      width: 100%;
+    }
+  } 
+`;
 
 export const Order = styled.section`
   display: flex;
   flex-direction: column;
   gap: 4rem;
-`
+`;
 
 export const Heading = styled.div`
   display: flex;
@@ -38,7 +48,7 @@ export const Heading = styled.div`
     ${(props) => props.theme.fonts.textL};
     color: ${(props) => props.theme.colors['gray-900']};
   }
-`
+`;
 
 export const Info = styled.div`
   border: 1px solid;
@@ -49,7 +59,7 @@ export const Info = styled.div`
   background-origin: border-box;
   background-image: ${(props) =>
     `linear-gradient(to bottom right, ${props.theme.colors['yellow-500']}, ${props.theme.colors['purple-500']})`};
-`
+`;
 
 export const InfoContent = styled.div`
   padding: 4rem;
@@ -75,4 +85,8 @@ export const InfoContent = styled.div`
     display: flex;
     flex-direction: column;
   }
-`
+
+  @media (max-width: 414px) {
+    padding: 2rem;
+  } 
+`;
